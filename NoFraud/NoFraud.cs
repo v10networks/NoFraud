@@ -12,9 +12,8 @@ namespace V10Networks.NoFraud
         private static string NoFraudEndPoint => "http://api.nofraud.co/";
         public async static Task<double> GetFraudScore(IPAddress address, string ApiKey = "")
         {
-            double Score;
             var Response = await httpClient.GetAsync($"{NoFraudEndPoint}ip.php?ip={address.ToString()}");
-            Double.TryParse(await Response.Content.ReadAsStringAsync(), out Score);
+            Double.TryParse(await Response.Content.ReadAsStringAsync(), out double Score);
             return Score;
         }
     }
